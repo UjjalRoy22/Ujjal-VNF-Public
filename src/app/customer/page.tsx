@@ -12,7 +12,7 @@ import Link from "next/link";
 import { abi as contractABI } from "build/contracts/VNF.json"; // Import ABI
 
 
-const contractAddress = '0xEB62e8E3DbFFc922F961d4E04BDb78D8fb9DA3C4';
+const contractAddress = '0x00Dc1415a993687990277591fEd8AC974Af76371';
 const localUrl = 'http://localhost:8545'
 
 interface BlockData {
