@@ -10,7 +10,7 @@ import axios from "axios";
 
 import path from 'path';
 
-const contractAddress = '0x00Dc1415a993687990277591fEd8AC974Af76371';
+const contractAddress = '0xc5c37D5cA730689c5c236A4AF473Be413eaD0c17';
 const localUrl = 'http://localhost:8545'
 
 const JWT = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJlMTY5MDlmMC02MjM1LTQ5ZTQtYmVjMi0yNjY0MWMwYjI1NmEiLCJlbWFpbCI6InAyMmNzZTEwMDJAY2l0LmFjLmluIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImYyYzU2OWJkOWZhMjUzODRmNDE5Iiwic2NvcGVkS2V5U2VjcmV0IjoiYTgxMDc1ZjUzZjBkZTM4NzUyYTYxZjdiNWVkZWE3YWM4Y2Y5YmRkZDMyZmU5YjBhMjI4ZjZjYTMzODViMTM0YSIsImlhdCI6MTcwMDgxNzM5MH0.YhiRhLzMI0X3wOOmpSmrtBSpS_-Xrhr-SLApi4U8wUw';
@@ -47,6 +47,7 @@ export default function BadgerPage() {
       const reviewResult = (e.currentTarget.elements.namedItem('reviewResult') as HTMLInputElement)?.value;
       const verifierResult = (e.currentTarget.elements.namedItem('verifierResult') as HTMLInputElement)?.value;
       const description = (e.currentTarget.elements.namedItem('description') as HTMLInputElement)?.value;
+      const vnfprice = (e.currentTarget.elements.namedItem('vnfprice') as HTMLInputElement)?.value;
       
       console.log('vnfName:', vnfName);
       console.log('vnfHash:', vnfHash);
@@ -59,8 +60,8 @@ export default function BadgerPage() {
 
 // Encode the data using your contract's ABI
 const dataToUpload = web3.eth.abi.encodeParameters(
-  ['string','string', 'string', 'string', 'string', 'string', 'string'],
-  [badgerId, vnfName, vnfHash, testResult, reviewResult, verifierResult, description]
+  ['string','string', 'string', 'string', 'string', 'string', 'string','string'],
+  [badgerId, vnfName, vnfHash, testResult, reviewResult, verifierResult, description, vnfprice]
 
 );
 // Set up the transaction object
@@ -203,10 +204,20 @@ const transactionObject = {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
+      <div className="mb-5">
+        <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+         Vnf Price
+        </label>
+        <input
+          type="text"
+          id="vnfprice"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+      </div>
       
       
       <div className="mb-5">
-        <label htmlFor="-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
          Description
         </label>
         <input
@@ -215,6 +226,7 @@ const transactionObject = {
           className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
+    
       <button  type="submit" className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" >Summit</button>
       </div>
      

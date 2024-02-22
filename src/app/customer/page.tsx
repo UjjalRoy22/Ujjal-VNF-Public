@@ -12,7 +12,7 @@ import Link from "next/link";
 import { abi as contractABI } from "build/contracts/VNF.json"; // Import ABI
 
 
-const contractAddress = '0x00Dc1415a993687990277591fEd8AC974Af76371';
+const contractAddress = '0xc5c37D5cA730689c5c236A4AF473Be413eaD0c17';
 const localUrl = 'http://localhost:8545'
 
 interface BlockData {
@@ -23,6 +23,7 @@ interface BlockData {
   reviewResult: string;
   verifierResult: string;
   description: string;
+  vnfprice: string;
 }
 
 export default function Customer() {
@@ -52,7 +53,7 @@ export default function Customer() {
           for (const transaction of block.transactions) {
             try {
               const decodedData = web3.eth.abi.decodeParameters(
-                ["string", "string", "string", "string", "string", "string", "string"],
+                ["string", "string", "string", "string", "string", "string", "string","string"],
                 transaction.input as string
               );
   
@@ -64,6 +65,7 @@ export default function Customer() {
                 reviewResult: decodedData[4] as string,
                 verifierResult: decodedData[5] as string,
                 description: decodedData[6] as string,
+                vnfprice: decodedData[7] as string,
               });
             } catch (decodeError) {
               console.error('Error decoding transaction input:', decodeError);
@@ -183,8 +185,12 @@ return (
                     <li className="flex space-x-3 items-center " key={badge.reviewResult}>
                       <span className="text-base font-semibold leading-tight text-gray-700 dark:text-gray-400">Verifier Result: {badge.verifierResult}</span>
                     </li>
+                    <li className="flex space-x-3 items-center " key={badge.vnfprice}>
+                      <span className="text-base font-semibold leading-tight text-gray-700 dark:text-gray-400">VNF Price: {badge.vnfprice}</span>
+                    </li>
                   </ul>
-                  
+            
+
                   <button 
                     type="button" 
                     onClick={() => buyVNF(parseInt(badge.id))} // Pass the badge id to the buyVNF function
@@ -193,7 +199,9 @@ return (
                     Buy VNF
                   </button>
                 </div>
+                
               ))}
+              
             </div>
           </div>
         </section>
