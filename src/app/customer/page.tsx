@@ -5,11 +5,12 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { userData } from "@/utils/users";
 import Layout from "@/components/common/Layout";
-import { Container, Modal, Button } from "react-bootstrap"; // Import Modal and Button
+import { Container, Modal, Button } from "react-bootstrap";
 import { pricingData } from "@/utils/pricing";
 import Web3 from "web3";
 import Link from "next/link";
-import { abi as contractABI } from "build/contracts/VNF.json"; // Import ABI
+import { abi as contractABI } from "build/contracts/VNF.json";
+import StarRatings from 'react-star-ratings'; // Import react-star-ratings
 
 const contractAddress = '0xAC350D5089ed5082997051Bc36FD3BB833ACc64b';
 const localUrl = 'http://localhost:8545'
@@ -25,46 +26,6 @@ interface BlockData {
   vnfprice: string;
 }
 
-// StarRating component for rendering star icons and capturing user's rating
-interface RatingProps {
-  rating: number;
-  onSelectRating: (rating: number) => void;
-}
-
-const StarRating: React.FC<RatingProps> = ({ rating, onSelectRating }) => {
-  const [hoverRating, setHoverRating] = useState(0);
-
-  const handleStarHover = (hoverRating: number) => {
-    setHoverRating(hoverRating);
-  };
-
-  const handleStarClick = (rating: number) => {
-    onSelectRating(rating);
-  };
-return (
-  <div>
-    {[...Array(5)].map((_, index) => {
-      const starValue = index + 1;
-      return (
-        <span
-          key={index}
-          className={`cursor-pointer ${
-            starValue <= (hoverRating || rating) ? 'text-yellow-400' : 'text-gray-300'
-          }`}
-          onMouseEnter={() => handleStarHover(starValue)}
-          onMouseLeave={() => setHoverRating(0)}
-          onClick={() => handleStarClick(starValue)}
-        >
-          ★
-        </span>
-      );
-    })}
-  </div>
-);
-};
-
-
-
 export default function Customer() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -72,8 +33,9 @@ export default function Customer() {
   const [user, setUser] = useState<UserData | null>(null);
   const [isUser, setIsUser] = useState(false);
   const [blockData, setBlockData] = useState<BlockData[]>([]);
-  const [showRatingModal, setShowRatingModal] = useState(false); // State variable for rating pop-up
-  const [selectedVNF, setSelectedVNF] = useState<BlockData | null>(null); // State variable to hold the selected VNF for rating
+  const [showRatingModal, setShowRatingModal] = useState(false);
+  const [selectedVNF, setSelectedVNF] = useState<BlockData | null>(null);
+  const [rating, setRating] = useState<number>(0); // State variable to hold the rating
 
   const fetchBlockData = async () => {
     try {
@@ -191,11 +153,11 @@ export default function Customer() {
   const handleCloseRatingModal = () => {
     setShowRatingModal(false);
     setSelectedVNF(null);
-    
+    setRating(0); // Reset the rating when the modal is closed
   };
 
   // Function to handle rating submission
-  const handleRateVNF = (rating: number) => {
+  const handleRateVNF = () => {
     // Implement logic to submit rating for the selected VNF
     console.log(`Rated VNF '${selectedVNF?.vnfName}' with rating ${rating}`);
     handleCloseRatingModal(); // Close the rating pop-up after submission
@@ -206,28 +168,30 @@ export default function Customer() {
       <Layout>
         <Container className="bg-gray-200 p-5 rounded-md h-screen">
           {/* Rating Modal */}
-          <Modal show={showRatingModal} onHide={handleCloseRatingModal}>
-            <Modal.Header closeButton>
-              <Modal.Title>Rate VNF {selectedVNF?.vnfName}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {/* Rating input */}
-              <input type="number" min="1" max="5" />
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleCloseRatingModal}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={() => handleRateVNF(5)}> {/* Assume 5 as the rating for now */}
-                Submit Rating
-              </Button>
-            </Modal.Footer>
-          </Modal>
+          <Modal show={showRatingModal} onHide={handleCloseRatingModal} centered>
+  <Modal.Header closeButton>
+    <Modal.Title>Rate VNF {selectedVNF?.vnfName}</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    {/* Star rating component */}
+    <StarRatings
+      rating={rating}
+      starRatedColor="orange"
+      changeRating={setRating}
+      numberOfStars={5}
+      name="rating"
+    />
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={handleCloseRatingModal}>
+      Close
+    </Button>
+    <Button variant="primary" onClick={handleRateVNF}>
+      Submit Rating
+    </Button>
+  </Modal.Footer>
+</Modal>
 
-
-
-      
-  
 
           <section className="bg-white">
             <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
