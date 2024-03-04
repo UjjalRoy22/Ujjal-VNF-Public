@@ -11,7 +11,7 @@ import Web3 from "web3";
 import Link from "next/link";
 import { abi as contractABI } from "build/contracts/VNF.json"; // Import ABI
 
-const contractAddress = '0x71540e7De3b6EE738deD579Aa6BE00e9920330Ff';
+const contractAddress = '0xAC350D5089ed5082997051Bc36FD3BB833ACc64b';
 const localUrl = 'http://localhost:8545'
 
 interface BlockData {
@@ -24,6 +24,46 @@ interface BlockData {
   description: string;
   vnfprice: string;
 }
+
+// StarRating component for rendering star icons and capturing user's rating
+interface RatingProps {
+  rating: number;
+  onSelectRating: (rating: number) => void;
+}
+
+const StarRating: React.FC<RatingProps> = ({ rating, onSelectRating }) => {
+  const [hoverRating, setHoverRating] = useState(0);
+
+  const handleStarHover = (hoverRating: number) => {
+    setHoverRating(hoverRating);
+  };
+
+  const handleStarClick = (rating: number) => {
+    onSelectRating(rating);
+  };
+return (
+  <div>
+    {[...Array(5)].map((_, index) => {
+      const starValue = index + 1;
+      return (
+        <span
+          key={index}
+          className={`cursor-pointer ${
+            starValue <= (hoverRating || rating) ? 'text-yellow-400' : 'text-gray-300'
+          }`}
+          onMouseEnter={() => handleStarHover(starValue)}
+          onMouseLeave={() => setHoverRating(0)}
+          onClick={() => handleStarClick(starValue)}
+        >
+          ★
+        </span>
+      );
+    })}
+  </div>
+);
+};
+
+
 
 export default function Customer() {
   const router = useRouter();
@@ -151,6 +191,7 @@ export default function Customer() {
   const handleCloseRatingModal = () => {
     setShowRatingModal(false);
     setSelectedVNF(null);
+    
   };
 
   // Function to handle rating submission
@@ -182,6 +223,11 @@ export default function Customer() {
               </Button>
             </Modal.Footer>
           </Modal>
+
+
+
+      
+  
 
           <section className="bg-white">
             <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
