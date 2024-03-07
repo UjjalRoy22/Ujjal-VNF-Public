@@ -12,7 +12,7 @@ import Link from "next/link";
 import { abi as contractABI } from "build/contracts/VNF.json";
 import StarRatings from 'react-star-ratings'; // Import react-star-ratings
 
-const contractAddress = '0xAC350D5089ed5082997051Bc36FD3BB833ACc64b';
+const contractAddress = '0x0F7065D2A2A3F41bbb423BA2c3026830484d2c4c';
 const localUrl = 'http://localhost:8545'
 
 interface BlockData {
@@ -168,28 +168,39 @@ export default function Customer() {
       <Layout>
         <Container className="bg-gray-200 p-5 rounded-md h-screen">
           {/* Rating Modal */}
-          <Modal show={showRatingModal} onHide={handleCloseRatingModal} centered>
-  <Modal.Header closeButton>
-    <Modal.Title>Rate VNF {selectedVNF?.vnfName}</Modal.Title>
-  </Modal.Header>
-  <Modal.Body>
-    {/* Star rating component */}
-    <StarRatings
-      rating={rating}
-      starRatedColor="orange"
-      changeRating={setRating}
-      numberOfStars={5}
-      name="rating"
-    />
-  </Modal.Body>
-  <Modal.Footer>
-    <Button variant="secondary" onClick={handleCloseRatingModal}>
-      Close
-    </Button>
-    <Button variant="primary" onClick={handleRateVNF}>
-      Submit Rating
-    </Button>
-  </Modal.Footer>
+          <Modal show={showRatingModal} onHide={handleCloseRatingModal} centered 
+          
+  className="w-1/2 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center flex-col p-5 rounded-md"
+      
+          >
+          <div className="flex flex-col justify-center items-center">
+  <div className="text-3xl font-bold mt-5">Rate VNF {selectedVNF?.vnfName}</div>
+
+  <StarRatings
+    rating={rating}
+    starRatedColor="orange"
+    changeRating={setRating}
+    numberOfStars={5}
+    name="rating"
+  />
+  <div>
+
+  <button
+    onClick={handleCloseRatingModal}
+    type="button"
+    className="mt-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+  >
+    Close
+  </button>
+  <button
+    onClick={handleRateVNF}
+    type="button"
+    className="mt-5 text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+  >
+    Submit
+  </button>
+  </div>
+</div>
 </Modal>
 
 
