@@ -6,12 +6,13 @@ import { useSearchParams } from "next/navigation";
 import { userData } from "@/utils/users";
 import Layout from "@/components/common/Layout";
 import { Container } from "react-bootstrap";
+
 import axios from "axios";
 
 import path from 'path';
 
-const contractAddress = '0x0F7065D2A2A3F41bbb423BA2c3026830484d2c4c';
-const localUrl = 'http://localhost:8545'
+const contractAddress = '0x82D277cD9B98D22875209575c19BB60A544553F5';
+const localUrl = 'http://localhost:7545'
 
 const JWT = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJlMTY5MDlmMC02MjM1LTQ5ZTQtYmVjMi0yNjY0MWMwYjI1NmEiLCJlbWFpbCI6InAyMmNzZTEwMDJAY2l0LmFjLmluIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImYyYzU2OWJkOWZhMjUzODRmNDE5Iiwic2NvcGVkS2V5U2VjcmV0IjoiYTgxMDc1ZjUzZjBkZTM4NzUyYTYxZjdiNWVkZWE3YWM4Y2Y5YmRkZDMyZmU5YjBhMjI4ZjZjYTMzODViMTM0YSIsImlhdCI6MTcwMDgxNzM5MH0.YhiRhLzMI0X3wOOmpSmrtBSpS_-Xrhr-SLApi4U8wUw';
 import Web3 from 'web3';

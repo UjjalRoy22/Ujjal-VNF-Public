@@ -12,8 +12,8 @@ import Link from "next/link";
 import { abi as contractABI } from "build/contracts/VNF.json";
 import StarRatings from 'react-star-ratings'; // Import react-star-ratings
 
-const contractAddress = '0x0F7065D2A2A3F41bbb423BA2c3026830484d2c4c';
-const localUrl = 'http://localhost:8545'
+const contractAddress = '0x82D277cD9B98D22875209575c19BB60A544553F5';
+const localUrl = 'http://localhost:7545'
 
 interface BlockData {
   id: string;
@@ -171,10 +171,10 @@ export default function Customer() {
           <Modal show={showRatingModal} onHide={handleCloseRatingModal} centered 
           
   className="w-1/2 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center flex-col p-5 rounded-md"
-      
+  style={{ backgroundColor: "#f2f2f2" }} // Light grey color
           >
           <div className="flex flex-col justify-center items-center">
-  <div className="text-3xl font-bold mt-5">Rate VNF {selectedVNF?.vnfName}</div>
+  <div className="text-3xl font-bold mt-5">Rate VNF: {selectedVNF?.vnfName}</div>
 
   <StarRatings
     rating={rating}
@@ -228,7 +228,7 @@ export default function Customer() {
                     <h5 className="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-400 text-center">{badge.vnfName}</h5>
                     <ul role="list" className="space-y-5 my-7">
                       <li className="flex space-x-3 items-center " key={badge.testResult}>
-                        <span className="text-base font-semibold leading-tight text-gray-700 dark:text-gray-400">VNF Hash: {badge.vnfHash}</span>
+                        {/* <span className="text-base font-semibold leading-tight text-gray-700 dark:text-gray-400">VNF Hash: {badge.vnfHash}</span> */}
                       </li>
                       <li className="flex space-x-3 items-center " key={badge.testResult}>
                         <span className="text-base font-semibold leading-tight text-gray-700 dark:text-gray-400">Test Result: {badge.testResult}</span>
@@ -241,6 +241,11 @@ export default function Customer() {
                       </li>
                       <li className="flex space-x-3 items-center " key={badge.vnfprice}>
                         <span className="text-base font-semibold leading-tight text-gray-700 dark:text-gray-400">VNF Price: {badge.vnfprice}</span>
+                        
+                      </li>
+                      <li className="flex space-x-3 items-center " key={badge.vnfprice}>
+                        <span className="text-base font-semibold leading-tight text-gray-700 dark:text-gray-400">Descriprtion: {badge.description}</span>
+                        
                       </li>
                     </ul>
                     <button 

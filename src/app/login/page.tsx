@@ -2,9 +2,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { userData } from '@/utils/users';
+import Layout from "@/components/common/Layout";
 export default function Login() {
     const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [selectedRole, setSelectedRole] = useState('');
   const router = useRouter();
 
   const handleLogin = () => {
@@ -30,7 +32,9 @@ export default function Login() {
   };
 
   return (
+    
     <>
+    <Layout>
     <section className="bg-gray-50 dark:bg-gray-900">
   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
@@ -42,8 +46,17 @@ export default function Login() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
                   Login to your account
               </h1>
+              <div>
+                                    <label htmlFor="role" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+                                    <select name="role" id="role" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} required>
+                                        <option value="">Select Role</option>
+                                        <option value="customer">Customer</option>
+                                        <option value="verifier">Badger</option>
+                                    </select>
+                                </div>
               <div className="space-y-4 md:space-y-6" >
                   <div>
+                  
                       <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                       <input type="username" name="username" id="username" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="username" required value={username}
         onChange={(e) => setUsername(e.target.value)}/>
@@ -71,6 +84,7 @@ export default function Login() {
       </div>
   </div>
 </section>
+</Layout>
     </>
   )
 }
