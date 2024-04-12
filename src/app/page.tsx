@@ -9,6 +9,8 @@ export default function Home() {
   const redirectTOlogin = () => {
     router.push("/login");
   };
+
+  
   return (
     <>
       <Layout>
