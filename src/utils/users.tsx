@@ -6,7 +6,7 @@ export const userData =[
         role: "0",
         roleName: "Badger",
         password: "123",
-        ethadd: "0x5f9f88B567Ca0C0116d16Bad47a6DEBB0B2eF900",
+        ethadd: "0x5AD6A21d38bcb088AF59b0a0F22569d7879BDf5a",
     },
     {
         id: "1",
@@ -15,7 +15,7 @@ export const userData =[
         role: "1",
         roleName: "Customer",
         password: "123",
-        ethadd: "0x291f78525ebd9Af5133E219C77b3dA5cfC7300A8"
+        ethadd: "0x78B16c19d89d49f6C7Fd8D5aC340280e82322Cd5"
 
     },
    

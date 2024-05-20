@@ -10,7 +10,7 @@ import { Container } from "react-bootstrap";
 import axios from "axios";
 
 
-const contractAddress = '0xC665D7537C6aC8b8926a4079c02d6d0DF3C5DDb5';
+const contractAddress = '0x0E85BDA90BC79d03C413127A33B7e6522c57CC8b';
 const localUrl = 'http://localhost:8545'
 
 const JWT = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiJlMTY5MDlmMC02MjM1LTQ5ZTQtYmVjMi0yNjY0MWMwYjI1NmEiLCJlbWFpbCI6InAyMmNzZTEwMDJAY2l0LmFjLmluIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImYyYzU2OWJkOWZhMjUzODRmNDE5Iiwic2NvcGVkS2V5U2VjcmV0IjoiYTgxMDc1ZjUzZjBkZTM4NzUyYTYxZjdiNWVkZWE3YWM4Y2Y5YmRkZDMyZmU5YjBhMjI4ZjZjYTMzODViMTM0YSIsImlhdCI6MTcwMDgxNzM5MH0.YhiRhLzMI0X3wOOmpSmrtBSpS_-Xrhr-SLApi4U8wUw';
@@ -121,7 +121,6 @@ const transactionObject = {
 
       
 
-
   return (
     <>
       <Layout>
@@ -130,122 +129,112 @@ const transactionObject = {
             <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
               <div className="max-w-xl mx-auto">
                 <h2 className="text-3xl font-extrabold text-gray-900 self-center text-center">
-                  ::VNFTestChain::
+                  ::DeCenVNF::
                 </h2>
-</div>
-                <br />
-                <br />
-                <h2 className="text-2xl font-extrabold text-gray-900 self-center text-center">
-                 Badging Authority Dashboard
-                </h2>
-                <br />
-                <br />
-                <div className="justify-center">
-                  <div className="">
-                    <h1 className="text-1xl font-extrabold text-gray-900 text-center">::Current User Details::</h1>
-
-                  </div>
-                  <div className="block text-center px-5 py-2.5 mr-2 mb-2 text-sm h-12 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-900 focus:outline-none dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-400 ">
-                    {user?.name} :: {user?.roleName}
-                  </div>
-                  <form className="max-w-sm mx-auto" onSubmit={handleBadgerSubmit}>
-  <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-      <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
-                  Add VNF Details
-              </h1>
-      <div className="mb-5">
-        <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-         VNF Name
-        </label>
-        <input
-          type="text"
-          id="vnfName"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
-      <div className="mb-5">
-        <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-        VNF hash
-        </label>
-        <input
-          type="text"
-          id="vnfHash"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
-      <div className="mb-5">
-        <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-        Test Result
-        </label>
-        <input
-          type="text"
-          id="testResult"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
-      <div className="mb-5">
-        <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-        Review Result
-        </label>
-        <input
-          type="text"
-          id="reviewResult"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
-      <div className="mb-5">
-        <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-        Verifier Result
-        </label>
-        <input
-          type="text"
-          id="verifierResult"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
-      <div className="mb-5">
-        <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-         Vnf Price
-        </label>
-        <input
-          type="text"
-          id="vnfprice"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
-      
-      
-      <div className="mb-5">
-        <label htmlFor="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-         Description
-        </label>
-        <input
-          type="text"
-          id="description"
-          className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
-    
-      <button  type="submit" className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" >Summit</button>
-      </div>
-     
-      </div>
-  
-
-      
-      
-    </form>
-
-                </div>
               </div>
-  
-       
-  
-
+              <br />
+              <br />
+              <h2 className="text-2xl font-extrabold text-gray-900 self-center text-center">
+                Badging Authority Dashboard
+              </h2>
+              <br />
+              <br />
+              <div className="justify-center">
+                <div>
+                  <h1 className="text-1xl font-extrabold text-gray-900 text-center">::Current User Details::</h1>
+                </div>
+                <div className="block text-center px-5 py-2.5 mr-2 mb-2 text-sm h-12 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-900 focus:outline-none dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-400">
+                  {user?.name} :: {user?.roleName}
+                </div>
+                <form className="max-w-xl mx-auto" onSubmit={handleBadgerSubmit}>
+                  <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
+                        Add VNF Details
+                      </h1>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="mb-5">
+                          <label htmlFor="vnfName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            VNF Name
+                          </label>
+                          <input
+                            type="text"
+                            id="vnfName"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                        <div className="mb-5">
+                          <label htmlFor="vnfHash" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            VNF Hash
+                          </label>
+                          <input
+                            type="text"
+                            id="vnfHash"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                        <div className="mb-5">
+                          <label htmlFor="testResult" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Test Result
+                          </label>
+                          <input
+                            type="text"
+                            id="testResult"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                        <div className="mb-5">
+                          <label htmlFor="reviewResult" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Review Result
+                          </label>
+                          <input
+                            type="text"
+                            id="reviewResult"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                        <div className="mb-5">
+                          <label htmlFor="verifierResult" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Verifier Result
+                          </label>
+                          <input
+                            type="text"
+                            id="verifierResult"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                        <div className="mb-5">
+                          <label htmlFor="vnfprice" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            VNF Price
+                          </label>
+                          <input
+                            type="text"
+                            id="vnfprice"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                        <div className="mb-5 col-span-2">
+                          <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Description
+                          </label>
+                          <input
+                            type="text"
+                            id="description"
+                            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                      </div>
+                      <button type="submit" className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
           </section>
         </Container>
       </Layout>
     </>
   );
-};
+};  

@@ -13,7 +13,7 @@ import { abi as contractABI } from "build/contracts/VNF.json";
 import StarRatings from 'react-star-ratings'; // Import react-star-ratings
 
 
-const contractAddress = '0xC665D7537C6aC8b8926a4079c02d6d0DF3C5DDb5';
+const contractAddress = '0x0E85BDA90BC79d03C413127A33B7e6522c57CC8b';
 const localUrl = 'http://localhost:8545'
 
 interface BlockData {
